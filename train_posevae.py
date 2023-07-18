@@ -209,7 +209,7 @@ if __name__ == '__main__':
     parser.add_argument("--checkpoint_dir", default='./checkpoints/SadTalker_V0.0.2_256.safetensors', help="path to output")
     parser.add_argument("--batch_size", type=int, default=64,  help="train batch size")
     parser.add_argument('--save_dir', type=str, default='./result_pose')
-    parser.add_argument('--save_name', type=str, default='debug')
+    parser.add_argument('--save_name', type=str, default='exp1')
     parser.add_argument('--interval', type=int, default=25)  #print interval
     parser.add_argument('--save_interval', type=int, default=500)  #save model interval
     parser.add_argument('--num_workers', type=int, default=6)  #
@@ -241,13 +241,6 @@ if __name__ == '__main__':
             for key in match:
                 if key.startswith('audio_encoder.audio_encoder'):
                     dicts[key[14:]] = match[key]
-                # print(key, match[key].shape)
-                # if key == 'netG.encoder.classbias':
-                #     dicts[key] = match[key].repeat((10000,1))[:cfg_pose.DATASET.NUM_CLASSES,:]
-                # elif key == 'netG.decoder.classbias':
-                #     dicts[key] = match[key].repeat((10000,1))[:cfg_pose.DATASET.NUM_CLASSES,:]
-                # else:
-                #     dicts[key] = match[key]
             audio2pose_model.audio_encoder.load_state_dict(dicts)  #只读取audio_encoder
             print('load pretrained model successfully')
         else:

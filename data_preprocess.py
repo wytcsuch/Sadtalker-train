@@ -60,7 +60,7 @@ if __name__ == '__main__':
     
     
     #step1:提取audio
-    input_dir = '/metahuman/data/2dhighresolution_230606/数字人高清视频数据_230606/数字人高清视频数据_230608_25fps'
+    input_dir = 'your video root dir'
     video_org_dir = '/metahuman/data/'
     audio_save_dir =  preprocess_save_dir +  '/audio/'
     video_paths = Get_img_paths(input_dir, ext = 'mp4')
