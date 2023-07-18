@@ -1,12 +1,10 @@
-
 # Sadtalker Traing
 
 thanks for the excellent works [Sadtalker](https://github.com/OpenTalker/SadTalker)
 
 | official result                 | my code result       |
 |:--------------------: |:--------------------: |
-| <video  src="./examples/org.mp4" type="video/mp4"> </video> | <video  src="./examples/train.mp4" type="video/mp4"> </video>  | 
-
+| <video  src=".\\examples\\org.mp4" type="video/mp4"> </video> | <video  src=".\\examples\\train.mp4" type="video/mp4"> </video>  | 
 <div align="center">
 
 <img src='https://user-images.githubusercontent.com/4397546/229094115-862c747e-7397-4b54-ba4a-bd368bfe2e0f.png' width='500px'/>
