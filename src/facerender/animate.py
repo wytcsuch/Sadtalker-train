@@ -233,7 +233,6 @@ class AnimateFromCoeff():
             full_video_path = av_path 
 
         #### paste back then enhancers
-        enhancer = False
         if enhancer:
             video_name_enhancer = x['video_name']  + '_enhanced.mp4'
             enhanced_path = os.path.join(video_save_dir, 'temp_'+video_name_enhancer)
