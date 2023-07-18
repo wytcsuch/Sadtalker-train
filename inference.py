@@ -136,8 +136,6 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    args.still = True
-    args.preprocess = 'full'
     if torch.cuda.is_available() and not args.cpu:
         args.device = "cuda"
     else:
