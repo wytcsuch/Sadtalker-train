@@ -206,13 +206,15 @@ if __name__ == '__main__':
     parser.add_argument("--preprocess", default='crop', choices=['crop', 'extcrop', 'resize', 'full', 'extfull'], help="how to preprocess the images" ) 
     parser.add_argument("--old_version",action="store_true", help="use the pth other than safetensor version" ) 
     parser.add_argument("--size", type=int, default=256,  help="the image size of the facerender")
-    parser.add_argument("--checkpoint_dir", default='/home/yckj3822/img2video/SadTalker-main/checkpoints/SadTalker_V0.0.2_256.safetensors', help="path to output")
+    parser.add_argument("--checkpoint_dir", default='./checkpoints/SadTalker_V0.0.2_256.safetensors', help="path to output")
     parser.add_argument("--batch_size", type=int, default=64,  help="train batch size")
-    parser.add_argument('--save_dir', type=str, default='/home/yckj3822/img2video/SadTalker-main/result_pose')
-    parser.add_argument('--save_name', type=str, default='64pretrain')
+    parser.add_argument('--save_dir', type=str, default='./result_pose')
+    parser.add_argument('--save_name', type=str, default='debug')
     parser.add_argument('--interval', type=int, default=25)  #print interval
     parser.add_argument('--save_interval', type=int, default=500)  #save model interval
     parser.add_argument('--num_workers', type=int, default=6)  #
+    parser.add_argument('--num_class', type=int, default=46)  #
+    parser.add_argument('--train_data_path', type=str, default='')  #
     args = parser.parse_args()
 
 
@@ -223,6 +225,7 @@ if __name__ == '__main__':
     #读取姿势yaml文件
     fcfg_pose = open(sadtalker_paths['audio2pose_yaml_path'])
     cfg_pose = CN.load_cfg(fcfg_pose)
+    cfg_pose['DATASET']['NUM_CLASSES'] = args.num_class
     cfg_pose.freeze()
     
 
@@ -257,7 +260,7 @@ if __name__ == '__main__':
     logger = create_logger(output_dir=worspace_path, dist_rank=0, name="loggers")
 
     #构建训练datasets
-    train_dataset = My_Dataset()
+    train_dataset = My_Dataset(input_path = args.train_data_path)
     bs = args.batch_size
 
     train_data_loader = torch.utils.data.DataLoader(
