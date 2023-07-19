@@ -1,6 +1,15 @@
 import os
 
 
+def GetDirsFromThisRootDir(dir,ext = None):
+    allfiles = []
+    needExtFilter = (ext != None)
+    for root,dirs,files in os.walk(dir):
+        if len(files) > 0:
+            allfiles.append(root)
+    return allfiles
+
+
 def GetFileFromThisRootDir(dir,ext = None):
     allfiles = []
     needExtFilter = (ext != None)
@@ -22,3 +31,9 @@ def Get_img_paths(path,ext = None):
     else:
         img_paths = GetFileFromThisRootDir(path, ext = ext)
     return img_paths
+
+
+
+def Get_img_dirs(path,ext = None):
+    img_dirs = GetDirsFromThisRootDir(path, ext = ext)
+    return img_dirs
