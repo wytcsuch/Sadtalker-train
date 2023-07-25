@@ -91,7 +91,7 @@ class ENCODER(nn.Module):
         x_out = self.MLP(x_in)  #这个是encoder的主体
 
         mu = self.linear_means(x_out)
-        logvar = self.linear_means(x_out)                      #bs latent_size 
+        logvar = self.linear_logvar(x_out)                      #bs latent_size 
 
         batch.update({'mu':mu, 'logvar':logvar})
         return batch
